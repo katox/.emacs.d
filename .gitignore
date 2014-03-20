@@ -1,0 +1,10 @@
+ac-comphist.dat
+auto-save-list/
+backups/
+elpa/
+url/
+*.swp
+*.swo
+.session
+.smex-items
+places
