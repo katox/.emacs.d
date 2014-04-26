@@ -17,8 +17,6 @@
                clj-refactor
                datomic-snippets
                dash
-               auto-complete
-               ac-nrepl
                rainbow-delimiters
                buffer-move
                magit
@@ -67,34 +65,19 @@
 ;(global-hl-line-mode t)
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)                    ; Disable emacs-starter-kits line highlighting
 
-;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
-(require 'auto-complete-config)
-(ac-config-default)
-
-;; Autocomplete after tab only
-(setq ac-auto-start nil)
-(ac-set-trigger-key "TAB")
-
-;; Setup cider autocomplete via ac-nrepl (on tab autocompletion)
-(require 'ac-nrepl)
-(defun set-auto-complete-as-completion-at-point-function ()
-  (setq completion-at-point-functions '(auto-complete)))
-(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
-(add-hook 'cider-repl-mode-hook 'set-auto-complete-as-completion-at-point-function)
-(add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
-
-;; Enable eldoc for cider
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
 ;; Enable yasnippet
 (require 'yasnippet)
 (yas/global-mode 1)
 (yas/load-directory "~/.emacs.d/snippets")
 
+;; Cider settings
+(setq cider-stacktrace-default-filters '(tooling dup))
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
+(setq cider-repl-print-length 100)
+(setq cider-repl-use-pretty-printing t)
 
-;; No cider popup to new buffers and display stacktraces inline
-;(setq cider-popup-on-error nil)
-;(setq cider-popup-stacktraces-in-repl t)
+;; Enable eldoc for cider
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
 ;; clojure mode addons
 (require 'clj-refactor)
