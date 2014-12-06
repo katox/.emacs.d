@@ -10,7 +10,6 @@
                starter-kit-eshell
                starter-kit-js
                clojure-mode
-               clojure-test-mode
                cider
                cider-decompile
                clojure-cheatsheet
