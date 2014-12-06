@@ -75,6 +75,12 @@
 (setq cider-repl-print-length 100)
 (setq cider-repl-use-pretty-printing t)
 
+;; enable paredit mode for cider buffers
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+;; emable for java interaction
+(add-hook 'cider-repl-mode-hook 'subword-mode)
+
 ;; Enable eldoc for cider
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
